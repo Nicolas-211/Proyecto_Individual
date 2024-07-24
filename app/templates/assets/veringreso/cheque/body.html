@@ -1,0 +1,82 @@
+<!-- jQuery -->
+<script src="{{ url_for('static', filename='plugins/jquery/jquery.min.js') }}"></script>
+
+<!-- Bootstrap 4 -->
+<script src="{{ url_for('static', filename='plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<!-- DataTables  & Plugins -->
+<script src="{{ url_for('static', filename='plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script
+    src="{{ url_for('static', filename='plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script
+    src="{{ url_for('static', filename='plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+
+
+<!-- InputMask -->
+<script src="{{ url_for('static', filename='plugins/moment/moment.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/inputmask/jquery.inputmask.min.js') }}"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script
+    src="{{ url_for('static', filename='plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+
+<script src="{{ url_for('static', filename='dist/js/adminlte.min.js') }}"></script>
+
+
+
+<!-- Bootstrap Switch -->
+<script src="{{ url_for('static', filename='plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}"></script>
+
+
+<!-- Filtros y botón de filtrado -->
+<script>
+    $(document).ready(function () {
+        var tabla = $('#miTabla').DataTable();
+        $("#reservationdate").datetimepicker({
+            format: "DD/MM/YYYY",
+            ignoreReadonly: false, // Permite la selección incluso cuando el campo es de solo lectura
+            allowInputToggle: true, // Permite abrir el calendario al hacer clic en el campo
+        });
+
+
+        $('#boton-filtrar').on('click', function () {
+            var fecharecep = $('[name="fecha-recep"]').val();// Obtén la fecha del campo de fecha
+            var filtroMonto = $('#filtro-monto').val();
+            var filtroOrigen = $('#filtro-origen').val()
+            var filtroSerie = $('#filtro-serie').val()
+            var fechacheque = $('[name="fecha-cheque"]').val();// Obtén la fecha del campo de fecha
+            tabla
+                .columns(0)
+                .search(fecharecep)
+                .draw();
+
+            tabla
+                .columns(1)
+                .search(fechacheque)
+                .draw();
+
+            tabla
+                .columns(5)
+                .search(filtroMonto) // Ignorar mayúsculas y minúsculas
+                .draw();
+
+            tabla
+                .columns(3)
+                .search(filtroOrigen)
+                .draw();
+
+            tabla
+                .columns(4)
+                .search(filtroSerie)
+                .draw();
+
+            // Limpiar los campos de filtro
+            $('[name="fecha-recep"]').val('');
+            $('[name="fecha-cheque"]').val('');
+            $('#filtro-origen').val('');
+            $('#filtro-monto').val('');
+            $('#filtro-serie').val('');
+
+        });
+    });
+</script>

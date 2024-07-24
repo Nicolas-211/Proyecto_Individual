@@ -1,0 +1,154 @@
+<!-- Main Sidebar Container -->
+
+<aside class="main-sidebar" style="background-color: #003f69;">
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Sidebar user (optional) -->
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="image">
+        <img src="{{ url_for('static', filename='dist/img/pjud.png') }}" class="img-circle elevation-2"
+          alt="User Image" />
+
+      </div>
+      <div class="info">
+        <a href="/Profile" class="d-block" style="color: white;">{{ nombre_usuario }} ({{usuario}})</a>
+      </div>
+    </div>
+
+    <!-- SidebarSearch Form -->
+    <div class="form-inline">
+      <div class="input-group" data-widget="sidebar-search">
+        <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+        <div class="input-group-append">
+          <button class="btn btn-sidebar" style="background-color: white;">
+            <i class="fas fa-search fa-fw" style="color: #000;"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- home-->
+        <li class="nav-item"  >
+          <a href="/home" class="nav-link" style="color: white;" >
+            <i class="nav-icon fas fa-home"></i>
+            <p>
+              Home
+            </p>
+          </a>
+        </li>
+        <!-- ingresar-->
+        <li class="nav-item">
+          <a href="#" class="nav-link" style="color: white;">
+            <i class="nav-icon fas fa-edit"></i>
+            <p>
+              Ingresar
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="/ingreso/correspondencia" class="nav-link" style="color: white;">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Correspondencia</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/ingreso/cheque" class="nav-link" style="color: white;">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Cheque</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <!-- Ver ingresos-->
+        <li class="nav-item">
+          <a href="#" class="nav-link" style="color: white;">
+            <i class="nav-icon fas fa-table"></i>
+            <p>
+              Ver Ingresos
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="/ver?opcion=correspondencia" class="nav-link" style="color: white;">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Correspondencia</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/ver?opcion=cheque" class="nav-link" style="color: white;">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Cheque</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <!--Generar informes-->
+          <li class="nav-item">
+            <a href="#" class="nav-link" style="color: white;">
+              <i class="nav-icon fas fa-file"></i>
+              <p>
+                Generar Informe
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/InformeCorrespondencia" class="nav-link" style="color: white;">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Correspondencia</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/InformeCheque" class="nav-link" style="color: white;">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Cheque</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+        <!-- Graficos o Estadistica-->
+        <li class="nav-item">
+          <a href="#" class="nav-link" style="color: white;">
+            <i class="nav-icon fas fa-chart-pie"></i>
+            <p>
+              Graficos
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="/GraficosCorrespondencia" class="nav-link" style="color: white;">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Correspondencia</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/Graficoscheque" class="nav-link" style="color: white;">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Cheque</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <!--Asignar o Cambiar Roles-->
+
+        {% if 1 in admin %}
+        <li class="nav-item">
+          <a href="/rol" class="nav-link" style="color: white;">
+            <i class="nav-icon fas fa-user-tag"></i>
+            <p>Roles</p>
+          </a>
+        </li>
+        {% endif %}
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>

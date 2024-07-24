@@ -1,0 +1,48 @@
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<!-- Google Font: Source Sans Pro -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+<!-- Font Awesome -->
+<link rel="stylesheet" type="text/css" id="theme"
+  href="{{ url_for('static', filename='plugins/fontawesome-free/css/all.min.css') }}" />
+<!-- Theme style -->
+<link rel="stylesheet" type="text/css" id="theme"
+  href="{{ url_for('static', filename='dist/css/adminlte.min.css') }}" />
+<script>
+  /* Trigger flash modal */
+  $(document).ready(function () {
+    console.log("El código JavaScript se ha ejecutado.");
+    var messages = "{{ get_flashed_messages() }}";
+
+    // if (typeof messages != 'undefined' && messages != '[]') {
+    //     $("#myModal").modal('show');
+    // };
+    if (typeof messages != 'undefined' && messages != '[]' && messages.match('Correo Cambiado correctamente.')) {
+      $("#myModal-exito-profile").modal('show');
+    };
+    if (typeof messages != 'undefined' && messages != '[]' && messages.match('Contraseña Cambiada Con Exito.')) {
+      $("#myModal-exito-profile").modal('show');
+    };
+    if (typeof messages != 'undefined' && messages != '[]' && messages.match('Los campos no son iguales. Por favor, verifíquelos.!')) {
+      $("#myModal-error-Profile").modal('show');
+    };
+    if (typeof messages != 'undefined' && messages != '[]' && messages.match('Este correo ya existe!')) {
+      $("#myModal-warning-Profile").modal('show');
+    };
+
+    if (typeof messages != 'undefined' && messages != '[]' && messages.match('Correo invalido')) {
+      $("#myModal-warning-Profile").modal('show');
+    };
+
+    if (typeof messages != 'undefined' && messages != '[]' && messages.match('La contraseña debe tener al menos 8 caracteres.')) {
+      $("#myModal-error-Profile").modal('show');
+    };
+
+    if (typeof messages != 'undefined' && messages != '[]' && messages.match('La contraseña debe contener al menos una letra mayúscula.')) {
+      $("#myModal-error-Profile").modal('show');
+    };
+    
+    if (typeof messages != 'undefined' && messages != '[]' && messages.match('La contraseña debe contener al menos dos números.')) {
+      $("#myModal-error-Profile").modal('show');
+    };
+  });
+</script>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PJUD</title>
+  {% include 'assets/home/header.html' %}
+</head>
+
+<body class="hold-transition sidebar-mini">
+  <div class="wrapper">
+    {% include '/menu/navbar.html' %} {% include '/menu/MainSidebar.html' %}
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6"></div>
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item">Home</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+        <!-- /.container-fluid -->
+      </section>
+
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid" style="padding-left: 70px;">
+          <div class="row">
+            <!-- left column -->
+            <div class="col-lg-3 col-sm-6 mb-4">
+              <div class="card">
+                <div class="card-header d-flex align-items-center justify-content-between" style="background-color: #D1D9DF;">
+                  <h6 class="card-title m-0 me-2" style="color: black;">Ingresar Correspondencia</h6>
+                </div>
+                <div class="card-body text-center" style="background-color: #003f69;">
+                  <div class="avatar avatar-md border-5 border-light-success rounded-circle mx-auto mb-4"
+                    style="height: 110px; width: 110px;">
+                    <a href="{{ url_for('ingresoCorrespondencia')}}">
+                      <!-- Cambié el span por un div para que sea más fácil agregar estilos -->
+                      <div class="avatar-initial rounded-circle bg-label-success text-white" style="font-size: 3em; ">
+                        <i class="fas fa-edit"></i>
+                      </div>
+                    </a>
+                  </div>
+                  <small class="d-block mb-2" style="color: white;">Presione el icono para acceder al menu Ingresar
+                    Correspondencia </small>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-sm-6 mb-4">
+              <div class="card">
+                <div class="card-header d-flex align-items-center justify-content-between" style="background-color: #D1D9DF;">
+                  <h6 class="card-title m-0 me-2" style="color: black;">Ingresar Cheque</h6>
+                </div>
+                <div class="card-body text-center" style="background-color: #003f69;">
+                  <div class="avatar avatar-md border-5 border-light-success rounded-circle mx-auto mb-4"
+                    style="height: 130px; width: 110px;">
+                    <a href="{{ url_for('ingresoCheque')}}">
+                      <!-- Cambié el span por un div para que sea más fácil agregar estilos -->
+                      <div class="avatar-initial rounded-circle bg-label-success text-white" style="font-size: 3em; ">
+                        <i class="fas fa-edit"></i>
+                      </div>
+                    </a>
+                  </div>
+                  <small class="d-block mb-2" style="color: white;">Presione el icono para acceder al menu Ingresar
+                    Cheque </small>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-sm-6 mb-4">
+              <div class="card">
+                <div class="card-header d-flex align-items-center justify-content-between" style="background-color: #D1D9DF;">
+                  <h6 class="card-title m-0 me-2" style="color: black;">Ver ingreso Correspondencia</h6>
+                </div>
+                <div class="card-body text-center" style="background-color: #003f69;">
+                  <div class="avatar avatar-md border-5 border-light-success rounded-circle mx-auto mb-4"
+                    style="height: 110px; width: 110px;">
+                    <a href="/ver?opcion=correspondencia">
+                      <!-- Cambié el span por un div para que sea más fácil agregar estilos -->
+                      <div class="avatar-initial rounded-circle bg-label-success text-white" style="font-size: 3em; ">
+                        <i class="nav-icon fas fa-table"></i>
+                      </div>
+                    </a>
+                  </div>
+                  <small class="d-block mb-2" style="color: white;">Presione el icono para acceder al menu Ver ingreso Correspondencia</small>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 mb-4">
+              <div class="card">
+                <div class="card-header d-flex align-items-center justify-content-between" style="background-color: #D1D9DF;">
+                  <h6 class="card-title m-0 me-2" style="color: black;">Ver ingreso Cheque</h6>
+                </div>
+                <div class="card-body text-center" style="background-color: #003f69;">
+                  <div class="avatar avatar-md border-5 border-light-success rounded-circle mx-auto mb-4"
+                    style="height: 130px; width: 110px;">
+                    <a href="/ver?opcion=cheque">
+                      <!-- Cambié el span por un div para que sea más fácil agregar estilos -->
+                      <div class="avatar-initial rounded-circle bg-label-success text-white" style="font-size: 3em; ">
+                        <i class="nav-icon fas fa-table"></i>
+                      </div>
+                    </a>
+                  </div>
+                  <small class="d-block mb-2" style="color: white;">Presione el icono para acceder al menu Ver ingreso Cheque</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-3 col-sm-6 mb-4">
+              <div class="card">
+                <div class="card-header d-flex align-items-center justify-content-between" style="background-color: #D1D9DF;">
+                  <h6 class="card-title m-0 me-2" style="color: black;">Generar Informe</h6>
+                </div>
+                <div class="card-body text-center" style="background-color: #003f69;">
+                  <div class="avatar avatar-md border-5 border-light-success rounded-circle mx-auto mb-4"
+                    style="height: 110px; width: 110px;">
+                    <a href="/InformeCorrespondencia">
+                      <!-- Cambié el span por un div para que sea más fácil agregar estilos -->
+                      <div class="avatar-initial rounded-circle bg-label-success text-white" style="font-size: 3em; ">
+                        <i class="nav-icon fas fa-file"></i>
+                      </div>
+                    </a>
+                  </div>
+                  <small class="d-block mb-2" style="color: white;">Presione el icono para acceder al menu Generar Informe Correspondencia</small>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 mb-4">
+              <div class="card">
+                <div class="card-header d-flex align-items-center justify-content-between" style="background-color: #D1D9DF;">
+                  <h6 class="card-title m-0 me-2" style="color: black;">Generar Informe</h6>
+                </div>
+                <div class="card-body text-center" style="background-color: #003f69;">
+                  <div class="avatar avatar-md border-5 border-light-success rounded-circle mx-auto mb-4"
+                  style="height: 130px; width: 110px;">
+                    <a href=/InformeCheque>
+                      <!-- Cambié el span por un div para que sea más fácil agregar estilos -->
+                      <div class="avatar-initial rounded-circle bg-label-success text-white" style="font-size: 3em; ">
+                        <i class="nav-icon fas fa-file"></i>
+                      </div>
+                    </a>
+                  </div>
+                  <small class="d-block mb-2" style="color: white;">Presione el icono para acceder al menu Generar Informe Cheque</small>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 mb-4">
+              <div class="card">
+                <div class="card-header d-flex align-items-center justify-content-between" style="background-color: #D1D9DF;">
+                  <h6 class="card-title m-0 me-2" style="color: black;">Graficos Correspondencia</h6>
+                </div>
+                <div class="card-body text-center" style="background-color: #003f69;">
+                  <div class="avatar avatar-md border-5 border-light-success rounded-circle mx-auto mb-4"
+                  style="height: 110px; width: 110px;">
+                    <a href="/GraficosCorrespondencia">
+                      <!-- Cambié el span por un div para que sea más fácil agregar estilos -->
+                      <div class="avatar-initial rounded-circle bg-label-success text-white" style="font-size: 3em; ">
+                        <i class="nav-icon fas fa-chart-pie"></i>
+                      </div>
+                    </a>
+                  </div>
+                  <small class="d-block mb-2" style="color: white;">Presione el icono para acceder al menu Graficos Correspondencia</small>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 mb-4">
+              <div class="card">
+                <div class="card-header d-flex align-items-center justify-content-between" style="background-color: #D1D9DF;">
+                  <h6 class="card-title m-0 me-2" style="color: black;">Graficos Cheque</h6>
+                </div>
+                <div class="card-body text-center" style="background-color: #003f69;">
+                  <div class="avatar avatar-md border-5 border-light-success rounded-circle mx-auto mb-4"
+                  style="height: 130px; width: 110px;">
+                    <a href="/Graficoscheque">
+                      <!-- Cambié el span por un div para que sea más fácil agregar estilos -->
+                      <div class="avatar-initial rounded-circle bg-label-success text-white" style="font-size: 3em; ">
+                        <i class="nav-icon fas fa-chart-pie"></i>
+                      </div>
+                    </a>
+                  </div>
+                  <small class="d-block mb-2" style="color: white;">Presione el icono para acceder al menu Graficos Cheque</small>
+                </div>
+              </div>
+            </div>
+            
+          {% if 1 in admin %}
+          <div class="col-lg-3 col-sm-6 mb-4">
+            <div class="card">
+              <div class="card-header d-flex align-items-center justify-content-between" style="background-color: #D1D9DF;">
+                <h6 class="card-title m-0 me-2" style="color: black;">Asignar Roles</h6>
+              </div>
+              <div class="card-body text-center" style="background-color: #003f69;">
+                <div class="avatar avatar-md border-5 border-light-success rounded-circle mx-auto mb-4"
+                style="height: 130px; width: 110px;">
+                  <a href="#">
+                    <!-- Cambié el span por un div para que sea más fácil agregar estilos -->
+                    <div class="avatar-initial rounded-circle bg-label-success text-white" style="font-size: 3em; ">
+                      <i class="nav-icon fas fa-user-tag"></i>
+                    </div>
+                  </a>
+                </div>
+                <small class="d-block mb-2" style="color: white;">Presione el icono para acceder al menu Asignar Roles</small>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+          </div>
+        </div>
+        <!-- /.container-fluid -->
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+      <div class="float-right d-none d-sm-block"></div>
+      <strong>Copyright &copy; 2023 <a>PJUD</a>.</strong> All rights reserved.
+    </footer>
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+  </div>
+  {% include 'modals/global/modal-warning.html' %}
+  {% include 'assets/home/body.html' %}
+
+</body>
+
+</html>

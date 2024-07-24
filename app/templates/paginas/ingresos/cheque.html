@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PJUD</title>
+
+  <!-- assets -->
+  {% include 'assets/ingresos/cheque/header.html' %}
+  <!-- fin assets -->
+</head>
+
+<body class="hold-transition sidebar-mini">
+  <div class="wrapper">
+    {% include '/menu/navbar.html' %} {% include '/menu/MainSidebar.html' %}
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6"></div>
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item">Ingreso</li>
+                <li class="breadcrumb-item active">Cheque</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+        <!-- /.container-fluid -->
+      </section>
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <!-- left column -->
+            <div class="col-md-11" style="margin-left: 4%">
+              <!-- general form elements -->
+              <div class="card card-primary">
+                <div class="card-header">
+                  <h3 class="card-title">Ingreso Cheque</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form class="form-horizontal" role="form" action="/ingreso/cheque" method="post"
+                  enctype="multipart/form-data">
+                  <div class="card-body">
+                    <div class="form-group">
+                      <label for="numero_oficio">N° Oficio:</label>
+                      <input type="text" class="form-control" id="numero_oficio" name="numero_oficio" required pattern="\d*" title="Ingrese solo números" />
+                    </div>
+                    <div class="form-group">
+                      <label>Fecha Documento:</label>
+                      <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                        <input type="text" name="fecha_doc" readonly class="form-control datetimepicker-input"
+                          data-target="#reservationdate" required />
+                        <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                          <div class="input-group-text">
+                            <i class="fa fa-calendar"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="Origen">Origen:</label>
+                      <input type="text" class="form-control" id="Origen" name="Origen" required />
+                    </div>
+
+                    <div class="form-group">
+                      <label for="Serie">Serie:</label>
+                      <input type="text" class="form-control" id="Serie" name="Serie" required pattern="\d*" title="Ingrese solo números"/>
+                    </div>
+                    <div class="form-group">
+                      <label for="Monto">Monto:</label>
+                      <input type="number" class="form-control" id="Monto" name="Monto" min="0" required />
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-2 control-label">Rit </label>
+                      <input type="text" class="form-control" name="ritc" required />
+                    </div>
+                    <div class="form-group">
+                      <label for="Archivo">Archivo:</label>
+                      <div class="input-group">
+                        <div class="custom-file">
+                          <input type="file" class="fileinput" name="pdf" id="pdf" accept="application/pdf" required />
+
+                        </div>
+                      </div>
+                    </div>
+
+                    {% for admin in admin %} {%if admin == 1%}
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label">Indicaciones</label>
+                      <textarea class="form-control" name="indicaciones"></textarea>
+                    </div>
+                    {% endif %} {% endfor %}
+                  </div>
+                  <!-- /.card-body -->
+
+                  <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">
+                      Ingresar
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+      <div class="float-right d-none d-sm-block"></div>
+      <strong>Copyright &copy; 2023 <a>PJUD</a>.</strong> All rights reserved.
+    </footer>
+  </div>
+
+  <!-- Modals -->
+
+  {% include 'modals/cheque/modal-exito-che.html' %}
+
+  {% include 'modals/cheque/modal-error-che.html' %}
+  <!-- fin Modals -->
+
+  <!-- assets -->
+  {% include 'assets/ingresos/cheque/body.html' %}
+  <!-- fin assets -->
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='dist/css/modal-warning.css') }}">
+
+<div id="myModal-warning-Profile" class="modal fade" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-confirm">
+    <div class="modal-content">
+      <div class="modal-header" id="headerWar">
+      </div>
+      <div class="modal-body text-center">
+        <h4>Cuidado</h4>	
+          {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="alert alert-warning">
+              {{ messages[0] }}
+            </div>
+          {% endif %}
+        {% endwith %}
+        <form action="/Profile">
+          <button class="btn btn-warning" data-bs-dismiss="modal"><span style="color: black;">Intentar nuevamente.</span> <i class="fa-solid fa-arrow-right"></i></button>
+        </form>
+      </div>
+    </div>
+  </div>
+  </div>     

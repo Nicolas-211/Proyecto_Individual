@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="theme-default" data-template="vertical-menu-template">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+  <title>PJUD</title>
+
+
+  <meta name="description"
+    content="Most Powerful &amp; Comprehensive Bootstrap 5 HTML Admin Dashboard Template built for developers!" />
+  <meta name="keywords" content="dashboard, bootstrap 5 dashboard, bootstrap 5 design, bootstrap 5">
+  <title>PJUD</title>
+  <!-- DataTables -->
+  <link rel="stylesheet" type="text/css" id="theme"
+    href="{{ url_for('static', filename='plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}" />
+  <link rel="stylesheet" type="text/css" id="theme"
+    href="{{ url_for('static', filename='plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}" />
+  <link rel="stylesheet" type="text/css" id="theme"
+    href="{{ url_for('static', filename='plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}" />
+
+  {% include 'assets/home/header.html' %}
+  {% include 'assets/informe/header.html' %}
+  <!-- Agrega las siguientes líneas para cargar DataTables y sus complementos -->
+  <style>
+    .sorting_disabled {
+      display: none;
+    }
+  </style>
+</head>
+
+<body class="hold-transition sidebar-mini">
+  <div class="wrapper light-style layout-navbar-fixed layout-menu-fixed layout-compact ">
+    {% include '/menu/navbar.html' %} {% include '/menu/MainSidebar.html' %}
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6"></div>
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item">Generar informe</li>
+                <li class="breadcrumb-item active">Correspondencia</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+        <!-- /.container-fluid -->
+      </section>
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12 mb-4">
+
+              <div class="bs-stepper wizard-numbered mt-2">
+                <div class="bs-stepper-header">
+                  <div class="step" data-target="#personal-info">
+                    <button type="button" class="step-trigger" aria-selected="false">
+                      <span class="bs-stepper-circle">1</span>
+                      <span class="bs-stepper-label mt-1">
+                        <span class="bs-stepper-title">Seleccionar fecha </span>
+                        <span class="bs-stepper-subtitle">Seleccionar fecha</span>
+                      </span>
+
+                    </button>
+                  </div>
+                  <div class="line">
+                    <i class="bx bx-chevron-right"></i>
+                  </div>
+                  <div class="step" data-target="#social-links">
+                    <button type="button" class="step-trigger" aria-selected="false">
+                      <span class="bs-stepper-circle">3</span>
+                      <span class="bs-stepper-label mt-1">
+                        <span class="bs-stepper-title">Generar informe</span>
+                        <span class="bs-stepper-subtitle">Generar informe</span>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+                <div class="bs-stepper-content">
+                  <form onsubmit="return false">
+                    <!-- Personal Info -->
+                    <div id="personal-info" class="content">
+                      <div class="row g-3">
+                        <div class="form-group">
+                          <label>Fecha:</label>
+                          <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                          <input type="date" name="fecha" id="fecha" required onfocus="btn()">
+                          </div>
+                        </div>
+                        <div class="col-12 d-flex justify-content-between">
+                          <button class="btn btn-primary btn-prev">
+                            <i class="bx bx-chevron-left bx-sm ms-sm-n2"></i>
+                            <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                          </button>
+                          <button id="boton-filtrar" class="btn btn-primary btn-next">
+                            <span class="align-middle d-sm-inline-block d-none me-sm-1">Next</span>
+                            <i class="bx bx-chevron-right bx-sm me-sm-n2"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Social Links -->
+                    <div id="social-links" class="content">
+                      <div class="content-header mb-3">
+                        <h6 class="mb-0">Generar informe</h6>
+                        <small>Generar informe.</small>
+                      </div>
+                      <div class="row g-3">
+                        <div class="table-responsive">
+                          {% include '/commons/correspondencia/tabla-informe.html' %}
+                        </div>
+                        <div class="col-12 d-flex justify-content-between">
+                          <button class="btn btn-primary btn-prev">
+                            <i class="bx bx-chevron-left bx-sm ms-sm-n2"></i>
+                            <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+      <div class="float-right d-none d-sm-block"></div>
+      <strong>Copyright &copy; 2023 <a>PJUD</a>.</strong> All rights reserved.
+    </footer>
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+  </div>
+  {% include 'assets/informe/correspondencia/body.html' %}
+  
+
+</body>
+<script>
+ 
+          inicializarTabla()
+
+
+</script>
+
+</html>

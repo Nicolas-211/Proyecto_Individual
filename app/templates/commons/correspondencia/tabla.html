@@ -1,0 +1,68 @@
+<style>
+  .custom-header {
+    background-color: #538dd5;
+    color: #ffffff;
+  }
+
+  .btn-custom-green {
+    background-color: #28a745;
+    /* Verde */
+    border-color: #28a745;
+    color: #fff;
+    /* Texto blanco */
+  }
+</style>
+
+<table id="tabla" class="table table-bordered table-striped">
+  <thead class="custom-header">
+    <tr>
+      <th>Tipo Ingreso</th>
+      <th>Fecha de Ingreso</th>
+      <th>Tipo Documento</th>
+      <th>N° Documento</th>
+      <th>RIT</th>
+      <th>Antecedentes</th>
+      <th>Origen</th>
+      <th>Observaciones</th>
+      <th>Distribución</th>
+      <th>Adjunto</th>
+      <th>Indicaciones</th>
+      {% if 1 in admin %}
+      <th>Accion</th>
+      {% endif %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in resultados %}
+    <tr>
+      <!-- Datos de la tabla -->
+      <td>{{ row[4] }}</td>
+      <td>{{ row[11] }}</td>
+      <td>{{ row[0] }}</td>
+      <td>{{ row[6] }}</td>
+      <td>{{ row[10] }}</td>
+      <td>{{ row[7] }}</td>
+      <td>{{ row[3] }}</td>
+      <td>{{ row[8] }}</td>
+      <td>{{ row[5] }}</td>
+      <td>
+        {% if row[9] %} <!-- Comprueba si hay archivo adjunto -->
+
+        <!-- Botón para abrir el PDF -->
+        <a class="pdf-button" href="{{ url_for('descargar_pdf', filename=row[9]) }}" target="_blank"> PDF
+          <img src="{{ url_for('static', filename='dist/img/pdf_icon.jpg') }}" alt="PDF" height="40" width="40">
+        </a>
+        {% else %}
+        Sin Adjunto
+        {% endif %}
+      </td>
+      <td>{{ row[2] }}</td>
+      {% if 1 in admin %}
+      <td> <a class="btn btn-primary mb-control indicaciones" data-dato="{{row[1]}}">Agregar
+          Comentario</a></td>
+      {% endif %}
+
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

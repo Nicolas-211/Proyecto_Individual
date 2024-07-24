@@ -1,0 +1,21 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='dist/css/modal-warning.css') }}">
+
+<div id="myModal-warning-logout" class="modal fade" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-confirm">
+    <div class="modal-content">
+
+      <div class="modal-body text-center">
+        <h4>Cerrar sesion</h4>
+        <!-- <p>Ocurrio un error al procesar la infraccion!.</p> -->
+        <div class="alert alert-warning">
+          ¿Esta seguro que desea cerrar sesion?
+        </div>
+
+        <a href="/" class="btn rounded-pill btn-warning"><span>Aceptar.</span></a>
+        <form action="/cancelar" method="get">
+          <button class="btn rounded-pill btn-danger" data-bs-dismiss="modal"><span>Cancelar.</span></button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" type="text/css" id="theme"
+    href="{{ url_for('static', filename='plugins/fontawesome-free/css/all.min.css') }}" />
+  <!-- Theme style -->
+  <link rel="stylesheet" type="text/css" id="theme"
+    href="{{ url_for('static', filename='dist/css/adminlte.min.css') }}" />
+  <script>
+    /* Trigger flash modal */
+    $(document).ready(function () {
+      console.log("El código JavaScript se ha ejecutado.");
+      var messages = "{{ get_flashed_messages() }}";
+
+      // if (typeof messages != 'undefined' && messages != '[]') {
+      //     $("#myModal").modal('show');
+      // };
+      if (typeof messages != 'undefined' && messages != '[]' && messages.match('Registrado correctamente!')) {
+        $("#myModal-exito-registro").modal('show');
+      };
+      if (typeof messages != 'undefined' && messages != '[]' && messages.match('Correo ya se encuentra registrado')) {
+        $("#myModal-error-registro").modal('show');
+      };
+      if (typeof messages != 'undefined' && messages != '[]' && messages.match('Correo invalido')) {
+        $("#myModal-error-registro").modal('show');
+      };
+      if (typeof messages != 'undefined' && messages != '[]' && messages.match('Existen campos sin rellenar!')) {
+        $("#myModal-error-registro").modal('show');
+      };
+      if (typeof messages != 'undefined' && messages != '[]' && messages.match('La contraseña debe tener al menos 8 caracteres.')) {
+        $("#myModal-error-registro").modal('show');
+      };
+      if (typeof messages != 'undefined' && messages != '[]' && messages.match('La contraseña debe contener al menos una letra mayúscula.')) {
+        $("#myModal-error-registro").modal('show');
+      };
+      if (typeof messages != 'undefined' && messages != '[]' && messages.match('La contraseña debe contener al menos dos números.')) {
+        $("#myModal-error-registro").modal('show');
+      };
+    });
+  </script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-image: url('static/img/poder.jpg');
+
+    }
+
+    .form-register {
+      width: 400px;
+      background: #24303c;
+      padding: 30px;
+      margin: auto;
+      margin-top: 100px;
+      border-radius: 4px;
+      font-family: 'calibri';
+      color: white;
+      box-shadow: 7px 13px 37px #000;
+    }
+
+    .form-register h4 {
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+
+    .controls {
+      width: 100%;
+      background: #24303c;
+      padding: 10px;
+      border-radius: 4px;
+      margin-bottom: 16px;
+      border: 1px solid #1f53c5;
+      font-family: 'calibri';
+      font-size: 18px;
+      color: white;
+    }
+
+    .form-register p {
+      height: 40px;
+      text-align: center;
+      font-size: 18px;
+      line-height: 40px;
+    }
+
+    .form-register a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .form-register a:hover {
+      color: white;
+      text-decoration: underline;
+    }
+
+    .form-register .botons {
+      width: 100%;
+      background: #1f53c5;
+      border: none;
+      padding: 12px;
+      color: white;
+      margin: 16px 0;
+      font-size: 16px;
+    }
+    .fulfilled {
+    color: green;
+}
+  </style>
+</head>
+
+<body>
+
+  <section class="form-register">
+    <form action="/registro" method="post">
+      <h4>Formulario Registro</h4>
+      <input class="controls" type="text" name="nombres" id="nombres" pattern="[a-zA-Z0-9]+"
+        placeholder="Ingrese su Nombre">
+      <input class="controls" type="text" name="apellidos" id="apellidos" pattern="[a-zA-Z0-9]+"
+        placeholder="Ingrese su Apellido">
+      <input class="controls" type="email" name="correo" id="correo" placeholder="Ingrese su Correo">
+      <input class="controls" type="password" name="password" id="password" placeholder="Ingrese su Contraseña">
+      <select class="controls" data-style="btn-success" name="tribunales">
+        {% for tribunales in tribunales %}
+        <option value="{{ tribunales[0] }}">{{ tribunales[1]}}</option>
+        {% endfor %}
+      </select>
+      <!-- Mostrar especificaciones de contraseña -->
+      <div id="passwordRequirements">
+        <h3>Especificaciones para la contraseña:</h3>
+        <ul>
+          <li>Debe tener al menos 8 caracteres.</li>
+          <li>Debe contener al menos una letra mayúscula.</li>
+          <li>Debe contener al menos dos números.</li>
+        </ul>
+      </div>
+      <br>
+      <input class="botons" type="submit" id="Registrar" name="Registrar" value="Registrar">
+    </form>
+    <p><a href="/">¿Ya tengo Cuenta?</a></p>
+  </section>
+
+  {% include 'modals/registro/modal-error-registro.html' %}
+  {% include 'modals/registro/modal-exito-registro.html' %}
+</body>
+  <!-- jQuery -->
+  <script src="{{ url_for('static', filename='plugins/jquery/jquery.min.js') }}"></script>
+  <!-- Bootstrap 4 -->
+  <script src="{{ url_for('static', filename='plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <!-- Select2 -->
+  <script src="{{ url_for('static', filename='plugins/select2/js/select2.full.min.js') }}"></script>
+  <!-- Bootstrap4 Duallistbox -->
+  <script
+    src="{{ url_for('static', filename='plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js') }}"></script>
+  <!-- InputMask -->
+  <script src="{{ url_for('static', filename='plugins/moment/moment.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='plugins/inputmask/jquery.inputmask.min.js') }}"></script>
+  <!-- date-range-picker -->
+  <script src="{{ url_for('static', filename='plugins/daterangepicker/daterangepicker.js') }}"></script>
+  <!-- bootstrap color picker -->
+  <script
+    src="{{ url_for('static', filename='plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js') }}"></script>
+  <!-- Tempusdominus Bootstrap 4 -->
+  <script
+    src="{{ url_for('static', filename='plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+  <!-- Bootstrap Switch -->
+  <script src="{{ url_for('static', filename='plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}"></script>
+
+  <!-- BS-Stepper -->
+  <script src="{{ url_for('static', filename='plugins/bs-stepper/js/bs-stepper.min.js') }}"></script>
+  <!-- dropzonejs -->
+  <script src="{{ url_for('static', filename='plugins/dropzone/min/dropzone.min.js') }}"></script>
+  <!-- AdminLTE App -->
+  <script src="{{ url_for('static', filename='dist/js/adminlte.min.js') }}"></script>
+  <!-- AdminLTE for demo purposes -->
+
+  <script>
+    // Script JavaScript
+document.getElementById('password').addEventListener('keyup', function () {
+    var password = this.value;
+    var requirements = document.getElementById('passwordRequirements').querySelectorAll('li');
+
+    // Verificar si la contraseña cumple con los requisitos
+    var lengthRequirement = password.length >= 8;
+    var uppercaseRequirement = /[A-Z]/.test(password);
+    var numbersRequirement = (password.match(/\d/g) || []).length >= 2;
+
+    // Marcar las especificaciones cumplidas o no cumplidas
+    requirements[0].classList.toggle('fulfilled', lengthRequirement);
+    requirements[1].classList.toggle('fulfilled', uppercaseRequirement);
+    requirements[2].classList.toggle('fulfilled', numbersRequirement);
+});
+</script>
+</html>

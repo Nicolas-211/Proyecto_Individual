@@ -1,0 +1,16 @@
+<!-- En tu plantilla base o en un archivo JavaScript -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    /* Trigger flash modal */
+    $(document).ready(function () {
+        console.log("El código JavaScript se ha ejecutado.");
+        var messages = "{{ get_flashed_messages() }}";
+
+        // Mostrar ventanas modales basadas en mensajes flash
+        if (typeof messages != 'undefined' && messages != '[]' && messages.match('¿Estás seguro de que deseas cerrar sesión?')) {
+            $("#myModal-warning-logout").modal('show');
+        }
+    });
+</script>
+
+{% include 'modals/logout/modal-warning.html' %}

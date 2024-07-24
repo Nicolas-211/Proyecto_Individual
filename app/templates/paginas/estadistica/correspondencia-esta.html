@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% include 'assets/graficos/cheque/header.html' %}
+</head>
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        {% include '/menu/navbar.html' %} {% include '/menu/MainSidebar.html' %}
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6"></div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item">Graficos</li>
+                                <li class="breadcrumb-item active">Correspondencia</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!-- PIE CHART -->
+                            <div class="card card-danger">
+                                <div class="card-header">
+                                    <h3 class="card-title">Cantidad de Correspondencia por Distribucion</h3>
+
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="pieChart"
+                                        style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                            <!-- LINE CHART -->
+                            <div class="card card-info">
+                                <div class="card-header">
+                                    <h3 class="card-title">Cantidad de Correspondencia por Origen</h3>
+
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="chart">
+                                        <canvas id="lineChart"
+                                            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+
+                        </div>
+                        <!-- /.col (LEFT) -->
+                        <div class="col-md-6">
+
+                            <!-- BAR CHART -->
+                            <div class="card card-success">
+                                <div class="card-header">
+                                    <h3 class="card-title">Cantidad de Correspondencia por mes</h3>
+
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="chart">
+                                        <canvas id="barChart"
+                                            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                        <!-- /.col (RIGHT) -->
+                    </div>
+                    <!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <footer class="main-footer">
+            <div class="float-right d-none d-sm-block"></div>
+            <strong>Copyright &copy; 2023 <a>PJUD</a>.</strong> All rights reserved.
+        </footer>
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+    </div>
+
+    {% include 'assets/graficos/cheque/body.html' %}
+
+    <script>
+        // Obtén los datos del servidor y crea el gráfico
+        var chartData = JSON.parse('{{ labels|tojson}}');
+        var chartValues = JSON.parse('{{ values|tojson}}');
+        var ctx = document.getElementById('lineChart').getContext('2d');
+
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: chartData,
+                datasets: [{
+                    label: 'Cantidad de Correspondencia',
+                    backgroundColor: 'white',
+                    borderColor: 'rgba(60,141,188,0.8)',
+                    pointRadius: 5,
+                    pointColor: '#3b8bba',
+                    pointStrokeColor: 'rgba(60,141,188,1)',
+                    pointHighlightFill: '#fff',
+                    pointHighlightStroke: 'rgba(60,141,188,1)',
+                    data: chartValues
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                responsive: true,
+                legend: {
+                    display: false
+                },
+                scales: {
+                    xAxes: [{
+                        gridLines: {
+                            display: false,
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Origen',
+                            fontSize: 14
+                        }
+                    }],
+                    yAxes: [{
+                        gridLines: {
+                            display: false,
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Cantidad',
+                            fontSize: 14
+                        },
+                        ticks: {
+                            beginAtZero: true,
+                            stepSize: 1,  // Ajusta el paso para mostrar solo números enteros
+                            callback: function (value) {
+                                if (Number.isInteger(value)) {
+                                    return value;
+                                }
+                            }
+                        }
+                    }]
+                }
+            }
+        });
+        // Obtén los datos del servidor y crea el gráfico
+        var chartData2 = JSON.parse('{{ labels2|tojson}}');
+        var chartValues2 = JSON.parse('{{ values2|tojson}}');
+        var ctx2 = document.getElementById('barChart').getContext('2d');
+        var myChart = new Chart(ctx2, {
+            type: "bar",
+            data: {
+                labels: chartData2,
+                datasets: [{
+                    data: chartValues2,
+                    label: 'Cantidad de Correspondencia por mes',
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 205, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(201, 203, 207, 0.2)'],
+                    borderColor: [
+                        'rgb(255, 99, 132)',
+                        'rgb(255, 159, 64)',
+                        'rgb(255, 205, 86)',
+                        'rgb(75, 192, 192)',
+                        'rgb(54, 162, 235)',
+                        'rgb(153, 102, 255)',
+                        'rgb(201, 203, 207)'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                responsive: true,
+                legend: {
+                    display: false
+                },
+                scales: {
+                    xAxes: [{
+                        gridLines: {
+                            display: true,
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Mes',
+                            fontSize: 14  // Ajusta el tamaño de la fuente según sea necesario
+                        }
+                    }],
+                    yAxes: [{
+                        gridLines: {
+                            display: true,
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Cantidad',
+                            fontSize: 14
+                        },
+                        ticks: {
+                            beginAtZero: true
+
+                        }
+                    }]
+                }
+            },
+            responsive: true,
+            maintainAspectRatio: false
+        });
+
+        var chartData3 = JSON.parse('{{ labels3|tojson}}');
+        var chartValues3 = JSON.parse('{{ values3|tojson}}');
+        var ctx3 = document.getElementById('pieChart').getContext('2d');
+
+        var barColors = [
+            "#b91d47",
+            "#00aba9",
+            "#2b5797",
+            "#e8c3b9",
+            "#1e7145"
+        ];
+        var myChart = new Chart(ctx3, {
+            type: "pie",
+            data: {
+                labels: chartData3,
+                datasets: [{
+                    backgroundColor: barColors,
+                    label: 'Cantidad de Correspondencia por Distribucion',
+                    data: chartValues3
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                responsive: true,
+            }
+        });
+
+
+    </script>
+
+</body>
+</html>

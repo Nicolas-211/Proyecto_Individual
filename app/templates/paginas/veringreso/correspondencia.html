@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PJUD</title>
+
+  <!-- assets -->
+  {% include 'assets/veringreso/correspondencia/header.html' %}
+  <!-- fin assets -->
+</head>
+
+<body class="hold-transition sidebar-mini">
+  <div class="wrapper">
+    {% include '/menu/navbar.html' %} {% include '/menu/MainSidebar.html' %}
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1></h1>
+            </div>
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Ver Ingreso</a></li>
+                <li class="breadcrumb-item active">Correspondencia </li>
+              </ol>
+            </div>
+          </div>
+        </div><!-- /.container-fluid -->
+      </section>
+
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Correspondencia</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <h3>Filtrar</h3>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <select id="filtro-tipo-ingreso" class="custom-select">
+                            <option value="">Seleccionar Tipo de Ingreso</option>
+                            {% for tipo_ingreso in tipo_ingreso %}
+                            <option value="{{ tipo_ingreso[1] }}">{{ tipo_ingreso[1] }}</option>
+                            {% endfor %}
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <select id="filtro-tipo-doc" class="custom-select">
+                            <option value="">Seleccionar Tipo de Documento</option>
+                            {% for tipo_documento in tipo_documento %}
+                            <option value="{{ tipo_documento[1] }}">{{ tipo_documento[1] }}</option>
+                            {% endfor %}
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                            <input type="text" name="fecha_doc" readonly class="form-control datetimepicker-input"
+                              data-target="#reservationdate" placeholder="Fecha Ingreso"/>
+                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker" >
+                              <div class="input-group-text">
+                                <i class="fa fa-calendar"></i>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <!-- Origen-->
+                          <select id="filtro-origen" class="custom-select">
+                            <option value="">Seleccionar Origen</option>
+                            {% for origen in origen %}
+                            <option value="{{ origen[1] }}">{{ origen[1] }}</option>
+                            {% endfor %}
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <select id="filtro-distribucion" class="custom-select">
+                            <option value="">Seleccionar Distribucion</option>
+                            {% for distribucion in distribucion %}
+                            <option value="{{ distribucion[1] }}">{{ distribucion[1] }}</option>
+                            {% endfor %}
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <!-- Monto-->
+                          <input type="text" class="form-control" id="filtro-N°-Documento" placeholder="N° Documento" />
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <label>&nbsp;</label>
+                        <button id="boton-filtrar" class="btn btn-primary">Filtrar</button>
+                      </div>
+                    </div>
+                    <BR>
+                      {% include '/commons/correspondencia/tabla.html' %}
+                  </div>
+                </div>
+                <!-- /.card-body -->
+              </div>
+              <!-- /.card -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+      </section>
+      {% include 'modals/correspondencia/modal-com-corres.html' %}
+      
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+      <div class="float-right d-none d-sm-block"></div>
+      <strong>Copyright &copy; 2023 <a>PJUD</a>.</strong> All rights reserved.
+    </footer>
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+  </div>
+  <!-- ./wrapper -->
+    <!-- assets -->
+    {% include 'assets/veringreso/correspondencia/body.html' %}
+    <!-- fin assets -->
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+<!-- jQuery -->
+<script src="{{ url_for('static', filename='plugins/jquery/jquery.min.js') }}"></script>
+
+<!-- Bootstrap 4 -->
+<script src="{{ url_for('static', filename='plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<!-- DataTables  & Plugins -->
+<script src="{{ url_for('static', filename='plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script
+    src="{{ url_for('static', filename='plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script
+    src="{{ url_for('static', filename='plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/jszip/jszip.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/pdfmake/pdfmake.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/pdfmake/vfs_fonts.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+
+
+<!-- InputMask -->
+<script src="{{ url_for('static', filename='plugins/moment/moment.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/inputmask/jquery.inputmask.min.js') }}"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script
+    src="{{ url_for('static', filename='plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+
+<script src="{{ url_for('static', filename='dist/js/adminlte.min.js') }}"></script>
+
+
+
+<!-- Bootstrap Switch -->
+<script src="{{ url_for('static', filename='plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}"></script>
+
+
+<!-- Filtros y botón de filtrado -->
+<script>
+    $(document).ready(function () {
+        var tabla = $('#tabla').DataTable();
+        $("#reservationdate").datetimepicker({
+            format: "DD/MM/YYYY",
+            ignoreReadonly: false, // Permite la selección incluso cuando el campo es de solo lectura
+            allowInputToggle: true, // Permite abrir el calendario al hacer clic en el campo
+        });
+
+
+        $('#boton-filtrar').on('click', function () {
+            var filtroTipoIngreso = $('#filtro-tipo-ingreso').val();
+            var filtroTipoDocumento = $('#filtro-tipo-doc').val();
+            var filtroOrigen = $('#filtro-origen').val()
+            var filtroDistribucion = $('#filtro-distribucion').val();
+            var filtroNDocumento = $('#filtro-N°-Documento').val();
+            var fechaSeleccionada = $('[name="fecha_doc"]').val(); // Obtén la fecha del campo de fecha
+            tabla
+                .columns(0)
+                .search(filtroTipoIngreso)
+                .draw();
+
+            tabla
+                .columns(1)
+                .search(fechaSeleccionada)
+                .draw();
+
+            tabla
+                .columns(2)
+                .search(filtroTipoDocumento, false, false, true) // Ignorar mayúsculas y minúsculas
+                .draw();
+            tabla
+                .columns(3)
+                .search(filtroNDocumento, false, false, true) // Ignorar mayúsculas y minúsculas
+                .draw();
+
+            tabla
+                .columns(6)
+                .search(filtroOrigen)
+                .draw();
+
+
+            tabla
+                .columns(8)
+                .search(filtroDistribucion)
+                .draw();
+
+            // Limpiar los campos de filtro
+            $('#filtro-tipo-ingreso').val('');
+            $('#filtro-tipo-doc').val('');
+            $('#filtro-origen').val('');
+            $('#filtro-distribucion').val('');
+            $('#filtro-N°-Documento').val('');
+            $('[name="fecha_doc"]').val('');
+
+        });
+    });
+</script>

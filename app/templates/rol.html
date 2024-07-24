@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PJUD</title>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" type="text/css" id="theme"
+    href="{{ url_for('static', filename='plugins/fontawesome-free/css/all.min.css') }}" />
+  <!-- Theme style -->
+  <link rel="stylesheet" type="text/css" id="theme"
+    href="{{ url_for('static', filename='dist/css/adminlte.min.css') }}" />
+  <script>
+    /* Trigger flash modal */
+    $(document).ready(function () {
+      console.log("El código JavaScript se ha ejecutado.");
+      var messages = "{{ get_flashed_messages() }}";
+
+      // if (typeof messages != 'undefined' && messages != '[]') {
+      //     $("#myModal").modal('show');
+      // };
+      if (typeof messages != 'undefined' && messages != '[]' && messages.match('Se cambio el rol con exito')) {
+        $("#myModal-exito").modal('show');
+      }; r
+      if (typeof messages != 'undefined' && messages != '[]' && messages.match('Existen campos sin llenar!')) {
+        $("#myModal-error").modal('show');
+      };
+    });
+  </script>
+</head>
+
+<body class="hold-transition sidebar-mini">
+  <div class="wrapper">
+    {% include '/menu/navbar.html' %} {% include '/menu/MainSidebar.html' %}
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6"></div>
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item">Roles</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+        <!-- /.container-fluid -->
+      </section>
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <!-- left column -->
+            <div class="col-md-11" style="margin-left: 4%">
+              <!-- general form elements -->
+              <div class="card card-success">
+                <div class="card-header">
+                  <h3 class="card-title">Asignar Roles</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form class="form-horizontal" role="form" action="/rol" method="post"
+                  enctype="multipart/form-data">
+                  <div class="card-body">
+                    <div class="form-group">
+                      <label for="Usuarios">Usuarios:</label>
+                      <select class="custom-select" name="usuario">
+                        {% for usuarios in usuarios %}
+                        <option value="{{ usuarios[0] }}">
+                          {{ usuarios[1] }}
+                        </option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="Roles">Roles:</label>
+                      <select class="custom-select" name="roles">
+                        {% for roles in roles %}
+                        <option value="{{ roles[0] }}">
+                          {{ roles[1] }}
+                        </option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="tribunales">Tribunales:</label>
+                      <select class="custom-select" name="tribunales">
+                        {% for tribunales in tribunales %}
+                        <option value="{{ tribunales[0] }}">
+                          {{ tribunales[1] }}
+                        </option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                  <!-- /.card-body -->
+                  <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">
+                      Guardar
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+      <div class="float-right d-none d-sm-block"></div>
+      <strong>Copyright &copy; 2023 <a>PJUD</a>.</strong> All rights reserved.
+    </footer>
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+  </div>
+  {% include 'modals/global/modal-warning.html' %}
+  {% include 'modals/rol/modal-exito-rol.html' %}
+  
+  <!-- jQuery -->
+  <script src="{{ url_for('static', filename='plugins/jquery/jquery.min.js') }}"></script>
+  <!-- Bootstrap 4 -->
+  <script src="{{ url_for('static', filename='plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <!-- bs-custom-file-input -->
+  <script src="{{ url_for('static', filename='plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
+  <!-- AdminLTE App -->
+  <script src="{{ url_for('static', filename='dist/js/adminlte.min.js') }}"></script>
+
+</body>
+
+</html>

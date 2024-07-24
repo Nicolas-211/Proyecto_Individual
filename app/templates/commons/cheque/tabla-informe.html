@@ -1,0 +1,52 @@
+<style>
+    .custom-header {
+        background-color: #538dd5;
+        color: #ffffff;
+    }
+  </style>
+<table id="miTabla" class="table table-bordered table-striped">
+    <thead class="custom-header">
+      <tr>
+        <th>Fecha Recepcion</th>
+        <th>Fecha de Cheque</th>
+        <th>N° OFICIO</th>
+        <th>ORIGEN</th>
+        <th>Serie</th>
+        <th>MONTO</th>
+        <th>RIT</th>
+        <th>Adjunto</th>
+        <th>Indicaciones</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in resultados %}
+      <tr>
+        <!-- Datos de la tabla -->
+        <td>{{ row[2] }}</td>
+        <td>{{ row[9] }}</td>
+        <td>{{ row[6] }}</td>
+        <td>{{ row[5] }}</td>
+        <td>{{ row[3] }}</td>
+        <td>{{ row[4] }}</td>
+        <td>{{ row[8] }}</td>
+        <td>
+          {% if row[7] %} <!-- Comprueba si hay archivo adjunto -->
+
+          <!-- Botón para abrir el PDF -->
+          <a class="pdf-button" href="{{ url_for('descargar_pdf', filename=row[7]) }}"
+            target="_blank">PDF
+            <img src="{{ url_for('static', filename='dist/img/pdf_icon.jpg') }}" alt="PDF" height="40"
+              width="40">
+          </a>
+          {% else %}
+          Sin Adjunto
+          {% endif %}
+        </td>
+        <td>{{ row[1] }}</td>
+
+      </tr>
+      {% endfor %}
+
+    </tbody>
+  </table>

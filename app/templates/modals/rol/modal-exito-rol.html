@@ -1,0 +1,24 @@
+
+<link rel="stylesheet" href="{{ url_for('static', filename='dist/css/modal-success.css') }}">
+
+<div id="myModal-exito" class="modal fade" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-confirm">
+      <div class="modal-content">
+        
+        <div class="modal-body text-center">
+          <h4>Exito!</h4>	
+          {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="alert alert-success">
+              {{ messages[0] }}
+            </div>
+          {% endif %}
+        {% endwith %}
+        
+          <form action="/rol">
+            <button class="btn btn-info" id="cambiar-imprimible"> <span>aceptar</span></button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>     

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  {% include 'assets/login/header.html' %}
+
+</head>
+
+<body>
+  <section class="form-register">
+    <form action="/" method="post">
+
+      <h4>Ingreso Sesion</h4>
+      <input class="controls" type="email" name="correo" id="correo" placeholder="Ingrese su Correo">
+      <input class="controls" type="password" name="password" id="password" placeholder="Ingrese su Contraseña">
+      <input class="botons" type="submit" id="inciio" name="inciio" value="Iniciar Sesion">
+    </form>
+    <p><a href="/registro">No tiene una Cuenta</a></p>
+    <p><a href="/restablecer_contrasena">Olvido su Contraseña</a></p>
+  </section>
+  <!-- Modals -->
+  {% include 'modals/login/modal-error-usu-pass.html' %}
+  {% include 'modals/login/modal-error-campos-vacios.html' %}
+  <!-- fin Modals -->
+  {% include 'assets/login/body.html'%}
+</body>
+
+</html>

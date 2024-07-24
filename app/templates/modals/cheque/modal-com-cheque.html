@@ -1,0 +1,25 @@
+
+<link rel="stylesheet" href="{{ url_for('static', filename='dist/css/modal-success.css') }}">
+
+<div id="myCom-C" class="modal fade" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-confirm">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <h4>Agregar Indicaciones</h4>	
+          {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="alert alert-success">
+              {{ messages[0] }}
+            </div>
+          {% endif %}
+        {% endwith %}        
+          <form action="/guardar_comentario" method="POST" >
+            <input hidden="true"  name="cheque_id" id="input-cheque-id" value="">
+            <textarea class="form-control" name="comentario"></textarea>
+            <button class="btn btn-success btn-lg">Guardar</button>
+          </form>
+          
+        </div>
+      </div>
+    </div>
+  </div>     

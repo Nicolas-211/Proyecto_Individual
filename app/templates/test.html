@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PJUD</title>
+
+  <!-- assets -->
+  {% include 'assets/veringreso/correspondencia/header.html' %}
+  <!-- fin assets -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.2/css/dataTables.buttons.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+
+</head>
+
+<body class="hold-transition sidebar-mini">
+  <div class="wrapper">
+    {% include '/menu/navbar.html' %} {% include '/menu/MainSidebar.html' %}
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1></h1>
+            </div>
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Ver Ingreso</a></li>
+                <li class="breadcrumb-item active">Correspondencia </li>
+              </ol>
+            </div>
+          </div>
+        </div><!-- /.container-fluid -->
+      </section>
+
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Correspondencia</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table id="example1" class="table table-bordered table-hover">
+                      <thead>
+                        <tr>
+                          <th>Tipo Ingreso</th>
+                          <th>Fecha de Ingreso</th>
+                          <th>Tipo Documento</th>
+                          <th>N° Documento</th>
+                          <th>RIT</th>
+                          <th>Antecedentes</th>
+                          <th>Origen</th>
+                          <th>Observaciones</th>
+                          <th>Distribución</th>
+                          <th>Adjunto</th>
+                          <th>Indicaciones</th>
+                          {% if 1 in admin %}
+                          <th>Accion</th>
+                          {% endif %}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for row in resultados %}
+                        <tr>
+                          <!-- Datos de la tabla -->
+                          <td>{{ row[4] }}</td>
+                          <td>{{ row[11] }}</td>
+                          <td>{{ row[0] }}</td>
+                          <td>{{ row[6] }}</td>
+                          <td>{{ row[10] }}</td>
+                          <td>{{ row[7] }}</td>
+                          <td>{{ row[3] }}</td>
+                          <td>{{ row[8] }}</td>
+                          <td>{{ row[5] }}</td>
+                          <td>
+                            {% if row[9] %} <!-- Comprueba si hay archivo adjunto -->
+
+                            <!-- Botón para abrir el PDF -->
+                            <a class="pdf-button" href="{{ url_for('descargar_pdf', filename=row[9]) }}"
+                              target="_blank">
+                              <img src="{{ url_for('static', filename='dist/img/pdf_icon.jpg') }}" alt="PDF" height="40"
+                                width="40">
+                            </a>
+                            {% else %}
+                            Sin Adjunto
+                            {% endif %}
+                          </td>
+                          <td>{{ row[2] }}</td>
+                          {% if 1 in admin %}
+                          <td> <a class="btn btn-primary mb-control indicaciones" data-dato="{{row[1]}}">Agregar
+                              Comentario</a></td>
+                          {% endif %}
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                  <button class="btn btn-success btn-submit" id="printButton">Submit</button>
+                </div>
+                <!-- /.card-body -->
+              </div>
+              <!-- /.card -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+      </section>
+      {% include 'modals/correspondencia/modal-com-corres.html' %}
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+      <div class="float-right d-none d-sm-block"></div>
+      <strong>Copyright &copy; 2023 <a>PJUD</a>.</strong> All rights reserved.
+    </footer>
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+  </div>
+  <!-- ./wrapper -->
+    <!-- assets -->
+    {% include 'assets/veringreso/correspondencia/body.html' %}
+    <!-- fin assets -->
+</body>
+<script>
+  $(document).ready(function() {
+    // Inicialice DataTables
+    $("#example1").DataTable({
+      responsive: true, lengthChange: true, autoWidth: true,
+      buttons: ['print']
+    });
+
+    // Vincule el evento de clic al botón de impresión
+    $("#printButton").click(function() {
+      $("#example1").DataTable().print();
+    });
+  });
+</script>
+</html>

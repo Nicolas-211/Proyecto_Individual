@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PJUD</title>
+  <!-- assets -->
+  {% include 'assets/reset_pass/header.html' %}
+  <!-- fin assets -->
+  <script>
+    /* Trigger flash modal */
+    $(document).ready(function () {
+      var messages = "{{ get_flashed_messages() }}";
+
+      if (typeof messages != 'undefined' && messages != '[]' && messages.match('El correo electrónico no existe en nuestra base de datos.')) {
+        $("#myModal-error").modal('show');
+      };
+      if (typeof messages != 'undefined' && messages != '[]' && messages.match('Se ha enviado un correo con las instrucciones para restablecer la contraseña.')) {
+        $("#myModal-reset-pass").modal('show');
+      };
+    });
+  </script>
+
+</head>
+
+<body class="hold-transition sidebar-mini">
+  <div class="wrapper">
+    <section class="form-register">
+      <form action="{{ url_for('restablecer_contrasena') }}" method="post">
+
+        <h4>Restablecer Contraseña</h4>
+        <input class="controls" type="email" name="correo" id="correo" placeholder="Ingrese su Correo">
+        <input class="botons" type="submit" id="inciio" name="inciio" value="Restablecer Contraseña">
+      </form>
+    </section>
+    <!-- /.content -->
+
+
+  </div>
+
+  <!-- Modals -->
+  {% include 'modals/reset_pass/modal-reset-pass.html' %}
+  <!-- fin Modals -->
+
+  <!-- assets -->
+  {% include 'assets/reset_pass/body.html' %}
+  <!-- fin assets -->
+
+</body>
+
+</html>

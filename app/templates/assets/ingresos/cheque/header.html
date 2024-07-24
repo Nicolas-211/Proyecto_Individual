@@ -1,0 +1,33 @@
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<!-- Google Font: Source Sans Pro -->
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+<!-- Font Awesome -->
+<link rel="stylesheet" type="text/css" id="theme"
+  href="{{ url_for('static', filename='plugins/fontawesome-free/css/all.min.css') }}" />
+<!-- Theme style -->
+<link rel="stylesheet" type="text/css" id="theme"
+  href="{{ url_for('static', filename='dist/css/adminlte.min.css') }}" />
+<script>
+  /* Trigger flash modal */
+$(document).ready(function() {
+    console.log("El código JavaScript se ha ejecutado.");
+    var messages = "{{ get_flashed_messages() }}";
+
+    // if (typeof messages != 'undefined' && messages != '[]') {
+    //     $("#myModal").modal('show');
+    // };
+    if (typeof messages != 'undefined' && messages != '[]' && messages.match('Cheque ingresado correctamente')) {
+        $("#myModal-exito-che").modal('show');
+    };
+    if (typeof messages != 'undefined' && messages != '[]' && messages.match('Existen campos sin llenar!')) {
+        $("#myModal-error").modal('show');
+    };
+    if (typeof messages != 'undefined' && messages != '[]' && messages.match('Cheque ya registrado en la BD!')) {
+        $("#myModal-error-che").modal('show');
+    };
+    if (typeof messages != 'undefined' && messages != '[]' && messages.match('Numero de documento invalido')) {
+        $("#myModal-error").modal('show');
+    };
+});
+</script>

@@ -1,0 +1,40 @@
+  <!-- jQuery -->
+  <script src="{{ url_for('static', filename='plugins/jquery/jquery.min.js') }}"></script>
+  <!-- Bootstrap 4 -->
+  <script src="{{ url_for('static', filename='plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <!-- Select2 -->
+  <script src="{{ url_for('static', filename='plugins/select2/js/select2.full.min.js') }}"></script>
+  <!-- Bootstrap4 Duallistbox -->
+  <script
+    src="{{ url_for('static', filename='plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js') }}"></script>
+  <!-- InputMask -->
+  <script src="{{ url_for('static', filename='plugins/moment/moment.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='plugins/inputmask/jquery.inputmask.min.js') }}"></script>
+  <!-- date-range-picker -->
+  <script src="{{ url_for('static', filename='plugins/daterangepicker/daterangepicker.js') }}"></script>
+  <!-- bootstrap color picker -->
+  <script
+    src="{{ url_for('static', filename='plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js') }}"></script>
+  <!-- Tempusdominus Bootstrap 4 -->
+  <script
+    src="{{ url_for('static', filename='plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+  <!-- Bootstrap Switch -->
+  <script src="{{ url_for('static', filename='plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}"></script>
+
+  <!-- BS-Stepper -->
+  <script src="{{ url_for('static', filename='plugins/bs-stepper/js/bs-stepper.min.js') }}"></script>
+  <!-- dropzonejs -->
+  <script src="{{ url_for('static', filename='plugins/dropzone/min/dropzone.min.js') }}"></script>
+  <!-- AdminLTE App -->
+  <script src="{{ url_for('static', filename='dist/js/adminlte.min.js') }}"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script>
+    $(function () {
+      //Date picker
+      $("#reservationdate").datetimepicker({
+        format: "DD-MM-YYYY",
+        ignoreReadonly: false, // Permite la selección incluso cuando el campo es de solo lectura
+        allowInputToggle: true, // Permite abrir el calendario al hacer clic en el campo
+      });
+    });
+  </script>
